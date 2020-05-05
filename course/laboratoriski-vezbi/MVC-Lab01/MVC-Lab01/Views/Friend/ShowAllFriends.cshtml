@@ -1,0 +1,46 @@
+﻿@model List<MVC_Lab01.Models.FriendModel>
+
+@{
+    ViewBag.Title = "Secretly you have no friends!";
+}
+@if (Model.Count == 0)
+{
+    <h2>You curently have no friends, try adding some!</h2>
+}
+else
+{
+    <h2 class="page-header">These are all your friends!</h2>
+
+    <table class="table" style="border:1px solid black">
+        <tr>
+            <td>Friend ID.</td>
+            <td>Friend Name</td>
+            <td>Place</td>
+            <td></td>
+        </tr>
+
+        @{
+            int i = 0;
+            foreach (var friend in Model)
+            {
+                friend.ID = i++;
+                <tr>
+                    <td>@friend.FriendId</td>
+                    <td>@friend.Ime</td>
+                    <td>@friend.MestoZiveenje</td>
+                    <td>
+                        <a href="/Friend/UpdateFriend/@friend.ID" class="btn btn-info" style="margin-bottom:5px;">Edit</a>
+                        <br />
+                        <a href="/Friend/DeleteFriend/@friend.ID" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+            }
+
+        }
+    </table>
+}
+
+
+
+
